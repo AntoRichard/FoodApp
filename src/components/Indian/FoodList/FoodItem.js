@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const FoodItem = ({ title, image, addCardHandler, val, addOne,minusOne }) => {
+const FoodItem = ({ title, image, addCardHandler, val, addOne, minusOne }) => {
   const [value, setValue] = useState(0);
   const [visible, setVisible] = useState('hidden');
   const style = {
@@ -48,14 +48,8 @@ const FoodItem = ({ title, image, addCardHandler, val, addOne,minusOne }) => {
   //     setVisible('hidden');
   //   }
   // };
-  const visibleCheckout = val =>{
-    if(val> 0) {
-      setVisible('visible');
-      console.log('yes')
-    }else{
-      setVisible('hidden')
-    }
-  };
+  const showAlert = value =>
+    value === 0 ? alert('Add something to cart') : null;
   return (
     <div style={style.card}>
       <img
@@ -67,17 +61,21 @@ const FoodItem = ({ title, image, addCardHandler, val, addOne,minusOne }) => {
       />
       <p style={{ fontSize: '20px', fontWeight: '700' }}>{title}</p>
       <div>
-        <button onClick={()=>{
-          minusOne(title, val-1)
-          visibleCheckout(val-1)
-          }} style={style.minus}>
+        <button
+          onClick={() => {
+            minusOne(title, val - 1);
+          }}
+          style={style.minus}
+        >
           -
         </button>
         <input type="text" value={val} style={style.input} />
-        <button onClick={()=>{
-            addOne(title, val+1)
-            setVisible('visible')
-        }} style={style.add}>
+        <button
+          onClick={() => {
+            addOne(title, val + 1);
+          }}
+          style={style.add}
+        >
           +
         </button>
         <button
@@ -90,8 +88,10 @@ const FoodItem = ({ title, image, addCardHandler, val, addOne,minusOne }) => {
             borderRadius: '3px',
             border: '1px solid orange'
           }}
-          onClick={()=>
-            addCardHandler(title, val)}
+          onClick={() => {
+            addCardHandler(title, val);
+            showAlert(val);
+          }}
         >
           Add To Cart
         </button>

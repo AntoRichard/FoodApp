@@ -15,7 +15,7 @@ const Cart = ({ data }) => {
 
   const tokenHandler = (token, address) => {
     console.log(token, address);
-}
+  };
   return (
     <div>
       <div style={{ margin: '92px 20px 0px 20px' }}>
@@ -75,14 +75,21 @@ const Cart = ({ data }) => {
           </h2>
         )}
       </div>
-      <Stripe stripeKey="pk_test_iMmLSAxXx0AxLBH8tRZwKx8I00LmaTH1BH" token={tokenHandler}
-            shippingAddress="E-11 Casa grande"
-            amount={idly * Idly +
-              dosa * Dosa +
-              pongal * Pongal +
-              chapathi * Chapathi +
-              Aapam * aapam}
-            name={"Anto"}/>
+      <div style={{ float: 'right', marginRight: '60px' }}>
+        <Stripe
+          stripeKey="pk_test_iMmLSAxXx0AxLBH8tRZwKx8I00LmaTH1BH"
+          token={tokenHandler}
+          shippingAddress="E-11 Casa grande"
+          amount={
+            idly * Idly +
+            dosa * Dosa +
+            pongal * Pongal +
+            chapathi * Chapathi +
+            Aapam * aapam
+          }
+          name={'Anto'}
+        />
+      </div>
     </div>
   );
 };
